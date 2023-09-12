@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        
+            <title>Create a Dictionary in Python – Python Dict Methods</title>
+        
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+            <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+        
+
+        
+        
+    <link
+  rel="preload"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css"
+  />
+</noscript>
+<link
+  rel="preload"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css"
+  />
+</noscript>
+
+<script
+  defer
+  src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/components/prism-core.min.js"
+></script>
+<script
+  defer
+  src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+></script>
+
+
+
+        
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/news/assets/css/global-26e2f3cde9.css" />
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/screen-561dcb294a.css" />
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/search-bar-124f5f949c.css" />
+
+        
+        <script defer src="https://cdn.freecodecamp.org/news-assets/algolia/algoliasearch-3-33-0/algoliasearch.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/algolia/autocomplete-0-36-0/autocomplete.min.js"></script>
+
+        
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/dayjs.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/localizedFormat.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/relativeTime.min.js"></script>
+
+        
+        
+            <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/locale/en.min.js"></script>
+        
+
+        
+        <script>let client,index;document.addEventListener("DOMContentLoaded",(()=>{client=algoliasearch("QMJYL5WYTI","89770b24481654192d7a5c402c6ad9a0"),index=client.initIndex("news")})),document.addEventListener("DOMContentLoaded",(()=>{const e=window.screen.width,t=window.screen.height,n=e>=767&&t>=768?8:5,o=document.getElementById("search-form"),s=document.getElementById("search-input"),a=document.getElementById("dropdown-container");let i,d,c;s.addEventListener("input",(e=>{i=e.target.value})),o.addEventListener("submit",(e=>{e.preventDefault(),function(){if(d=document.getElementsByClassName("aa-cursor")[0],d&&i){const e=d.querySelector("a").href;window.location.assign(e)}else!d&&i&&c&&window.location.assign(`https://www.freecodecamp.org/news/search?query=${i}`)}()}));const l=autocomplete("#search-input",{hint:!1,keyboardShortcuts:["s",191],openOnFocus:!0,appendTo:a,debug:!0},[{source:autocomplete.sources.hits(index,{hitsPerPage:n}),debounce:250,templates:{suggestion:e=>(c=!0,`\n            <a href="${e.url}">\n              <div class="algolia-result">\n                <span>${e._highlightResult.title.value}</span>\n              </div>\n            </a>\n          `),empty:()=>(c=!1,'\n            <div class="aa-suggestion footer-suggestion no-hits-footer">\n              <div class="algolia-result">\n                <span>\n                  No tutorials found\n                </span>\n              </div>\n            </div>\n          '),footer:e=>{if(!e.isEmpty)return`\n              <div class="aa-suggestion footer-suggestion">\n                <a id="algolia-footer-selector" href="https://www.freecodecamp.org/news/search?query=${i}">\n                  <div class="algolia-result algolia-footer">\n                    See all results for ${i}\n                  </div>\n                </a>\n              </div>\n            `}}}]).on("autocomplete:selected",((e,t,n,o)=>{d=t?t.url:`https://www.freecodecamp.org/news/search?query=${i}`,"click"!==o.selectionMethod&&"tabKey"!==o.selectionMethod&&c&&window.location.assign(d)}));document.addEventListener("click",(e=>{e.target!==s&&l.autocomplete.close()}))})),document.addEventListener("DOMContentLoaded",(()=>{dayjs.extend(dayjs_plugin_localizedFormat),dayjs.extend(dayjs_plugin_relativeTime),dayjs.locale("en")}));const isAuthenticated=document.cookie.split(";").some((e=>e.trim().startsWith("jwt_access_token="))),isDonor=document.cookie.split(";").some((e=>e.trim().startsWith("isDonor=true")));</script>
+
+        
+        
+    
+        <script
+            data-ad-client="ca-pub-9482786369113753"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+            crossorigin="anonymous"
+            async
+        ></script>
+    
+
+
+        
+        
+        
+
+        
+        
+
+        <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico" type="image/png">
+        
+        
+            <link rel="canonical" href="https://www.freecodecamp.org/news/create-a-dictionary-in-python-python-dict-methods/">
+        
+        <meta name="referrer" content="no-referrer-when-downgrade">
+
+        
+
+        
+    <meta name="description" content="In this article, you will learn the basics of dictionaries in Python. You will learn how to create dictionaries, access the elements inside them, and how to modify them depending on your needs. You will also learn some of the most common built-in methods used on dictionaries. Here is what">
+
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Create a Dictionary in Python – Python Dict Methods">
+    
+        <meta property="og:description" content="In this article, you will learn the basics of dictionaries in Python. You will learn how to create dictionaries, access the elements inside them, and how to modify them depending on your needs. You will also learn some of the most common built-in methods used on dictionaries. Here is what">
+    
+    <meta property="og:url" content="https://www.freecodecamp.org/news/create-a-dictionary-in-python-python-dict-methods/">
+    <meta property="og:image" content="https://www.freecodecamp.org/news/content/images/2022/03/pexels-kevin-ku-577585.jpg">
+    <meta property="article:published_time" content="2022-03-14T14:19:43.000Z">
+    <meta property="article:modified_time" content="2022-03-14T14:19:43.000Z">
+    
+        <meta property="article:tag" content="Python">
+    
+        <meta property="article:tag" content="Dictionary">
+    
+        <meta property="article:tag" content="Beginner">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Create a Dictionary in Python – Python Dict Methods">
+    
+        <meta name="twitter:description" content="In this article, you will learn the basics of dictionaries in Python. You will learn how to create dictionaries, access the elements inside them, and how to modify them depending on your needs. You will also learn some of the most common built-in methods used on dictionaries. Here is what">
+    
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/create-a-dictionary-in-python-python-dict-methods/">
+    <meta name="twitter:image" content="https://www.freecodecamp.org/news/content/images/2022/03/pexels-kevin-ku-577585.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Dionysia Lemonaki">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Python, Dictionary, Beginner">
+    <meta name="twitter:site" content="@freecodecamp">
+    
+
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1500">
+
+
+        
+    <script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"publisher": {
+		"@type": "Organization",
+		"name": "freeCodeCamp.org",
+		"url": "https://www.freecodecamp.org/news/",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg",
+			"width": 2100,
+			"height": 240
+		}
+	},
+	"image": {
+		"@type": "ImageObject",
+		"url": "https://www.freecodecamp.org/news/content/images/2022/03/pexels-kevin-ku-577585.jpg",
+		"width": 2000,
+		"height": 1500
+	},
+	"url": "https://www.freecodecamp.org/news/create-a-dictionary-in-python-python-dict-methods/",
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": "https://www.freecodecamp.org/news/"
+	},
+	"datePublished": "2022-03-14T14:19:43.000Z",
+	"dateModified": "2022-03-14T14:19:43.000Z",
+	"keywords": "Python, Dictionary, Beginner",
+	"description": "In this article, you will learn the basics of dictionaries in Python.\n\nYou will learn how to create dictionaries, access the elements inside them, and\nhow to modify them depending on your needs.\n\nYou will also learn some of the most common built-in methods used on\ndictionaries.\n\nHere is what we will cover:\n\n 1. Define a dictionary 1. Define an empty dictionary\n     2. Define a dictionary with items\n    \n    \n 2. An overview of keys and values\n    1.Find the number of key-value pairs contained in",
+	"headline": "Create a Dictionary in Python – Python Dict Methods",
+	"author": {
+		"@type": "Person",
+		"name": "Dionysia Lemonaki",
+		"url": "https://www.freecodecamp.org/news/author/dionysia/",
+		"sameAs": [],
+		"image": {
+			"@type": "ImageObject",
+			"url": "https://www.freecodecamp.org/news/content/images/2023/08/image-of-me-removebg-preview.png",
+			"width": 502,
+			"height": 497
+		}
+	}
+}</script>
+
+
+        <meta name="generator" content="Eleventy">
+        <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/news/rss/">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+<!-- Web Monetization (https://webmonetization.org/) -->
+<meta name="monetization" content="$ilp.uphold.com/LJmbPn7WD4JB">
+<!-- end Web Monetization -->
+
+<!-- dataLayer setup -->
+<script>
+window.dataLayer = window.dataLayer || [];
+</script>
+<!-- End dataLayer setup -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5D6RKKP');</script>
+<!-- End Google Tag Manager -->
+
+
+<meta name="google-site-verification" content="b4tITLzEeeZGEpvD4mGNf3khKM4fvqejQaz9SYBQP8E" />
+
+        
+    </head>
+    
+    
+        <body class="home-template">
+    
+        <div class="site-wrapper">
+            <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        
+<form id="search-form" data-test-label="search-bar">
+    <div role="search" class="searchbox__wrapper">
+        <label class="fcc_sr_only" for='search-input'>
+            Search
+        </label>
+        <input type="search" placeholder="
+    Search 10,300+ tutorials
+" id="search-input" />
+        <button type="submit" class="ais-SearchBox-submit">
+            <svg class="ais-SearchBox-submitIcon" xmlns="https://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40">
+    <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z" />
+</svg>
+
+            <span class="fcc_sr_only">Submit your search query</span>
+        </button>
+        <div id='dropdown-container'></div>
+    </div>
+</form>
+
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news" data-test-label="site-nav-logo"><img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp.org" /></a>
+    </div>
+    <div class="site-nav-right">
+        <div class="nav-group">
+            <a
+                class="nav-forum"
+                id="nav-forum"
+                rel="noopener noreferrer"
+                href="https://forum.freecodecamp.org/"
+                target="_blank"
+                data-test-label="forum-button"
+            >Forum</a>
+            <a
+                class="toggle-button-nav"
+                id="nav-donate"
+                rel="noopener noreferrer"
+                href="https://www.freecodecamp.org/donate/"
+                target="_blank"
+                data-test-label="donate-button"
+            >Donate</a>
+        </div>
+    </div>
+</nav>
+
+
+            
+            <a class="banner" id="banner" data-test-label="banner" rel="noopener noreferrer" target="_blank">
+    <p id="banner-text"></p>
+</a>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("banner"),t=document.getElementById("banner-text");isAuthenticated?(t.innerHTML="Support our charity and our mission. <span>Donate to freeCodeCamp.org</span>.",e.href="https://www.freecodecamp.org/donate",e.setAttribute("text-variation","authenticated")):isDonor?(t.innerHTML="Thank you for supporting freeCodeCamp through <span>your donations</span>.",e.href="https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/",e.setAttribute("text-variation","donor")):(t.innerHTML="Learn to code — <span>free 3,000-hour curriculum</span>",e.href="https://www.freecodecamp.org/",e.setAttribute("text-variation","default"))}));</script>
+
+
+            <div id="error-message"></div>
+
+            
+    <main id="site-main" class="post-template site-main outer">
+        <div class="inner ad-layout">
+            <article class="post-full post ">
+                <header class="post-full-header">
+                    <section class="post-full-meta">
+                        <time class="post-full-meta-date" datetime="Mon Mar 14 2022 14:19:43 GMT+0000 (Coordinated Universal Time)">
+                            March 14, 2022
+                        </time>
+                        
+                            <span class="date-divider">/</span>
+                            <a  dir="ltr" href="/news/tag/python/">
+                                #Python
+                            </a>
+                        
+                    </section>
+                    <h1 class="post-full-title">Create a Dictionary in Python – Python Dict Methods</h1>
+                </header>
+                <div class="post-full-author-header" data-test-label="author-header-no-bio">
+                    
+                        
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img
+      srcset="https://www.freecodecamp.org/news/content/images/size/w60/2023/08/image-of-me-removebg-preview.png 60w"
+      sizes="60px"
+      src="https://www.freecodecamp.org/news/content/images/size/w60/2023/08/image-of-me-removebg-preview.png"
+      class="author-profile-image"
+      alt="Dionysia Lemonaki"
+      width="502"
+      height="497"
+      onerror="this.style.display='none'"
+      
+      data-test-label="profile-image"
+    />
+  
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="/news/author/dionysia/" data-test-label="profile-link">
+                    
+                        Dionysia Lemonaki
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                        
+                    
+                </div>
+                
+                    <figure class="post-full-image">
+                        
+    <picture>
+      <source
+        media="(max-width: 700px)"
+        sizes="1px"
+        srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"
+      />
+      <source 
+        media="(min-width: 701px)"
+        sizes="(max-width: 800px) 400px, (max-width: 1170px) 700px, 1400px"
+        srcset="https://www.freecodecamp.org/news/content/images/size/w300/2022/03/pexels-kevin-ku-577585.jpg 300w,https://www.freecodecamp.org/news/content/images/size/w600/2022/03/pexels-kevin-ku-577585.jpg 600w,https://www.freecodecamp.org/news/content/images/size/w1000/2022/03/pexels-kevin-ku-577585.jpg 1000w,https://www.freecodecamp.org/news/content/images/size/w2000/2022/03/pexels-kevin-ku-577585.jpg 2000w"
+      />
+      <img
+        onerror="this.style.display='none'"
+        src="https://www.freecodecamp.org/news/content/images/size/w2000/2022/03/pexels-kevin-ku-577585.jpg"
+        alt="Create a Dictionary in Python – Python Dict Methods",
+        width="2000"
+        height="1500"
+      >
+    </picture>
+  
+                    </figure>
+                
+                <section class="post-full-content">
+                    <div class="post-and-sidebar">
+                        <section class="post-content " data-test-label="post-content">
+                            
+<p>In this article, you will learn the basics of dictionaries in Python.</p>
+<p>You will learn how to create dictionaries, access the elements inside them, and how to modify them depending on your needs.</p>
+<p>You will also learn some of the most common built-in methods used on dictionaries.</p>
+<p>Here is what we will cover:</p>
+<ol>
+<li><a href="#define-intro">Define a dictionary</a>
+<ol>
+<li><a href="#define-empty">Define an empty dictionary</a></li>
+<li><a href="#define-items">Define a dictionary with items</a></li>
+</ol>
+</li>
+<li><a href="#overview">An overview of keys and values</a><br>
+1.<a href="#length">Find the number of <code>key-value</code> pairs contained in a dictionary</a><br>
+2.<a href="#key-value">View all <code>key-value</code> pairs</a><br>
+3.<a href="#keys">View all <code>keys</code></a><br>
+4.<a href="#values">View all <code>values</code></a></li>
+<li><a href="#access">Access individual items</a></li>
+<li><a href="#modify">Modify a dictionary</a>
+<ol>
+<li><a href="#add">Add new items</a></li>
+<li><a href="#update">Update items</a></li>
+<li><a href="#delete">Delete items</a></li>
+</ol>
+</li>
+</ol>
+<h2 id="howtocreateadictionaryinpythonanamedefineintroa">How to Create a Dictionary in Python <a name="define-intro"></a></h2>
+<p>A dictionary in Python is made up of key-value pairs.</p>
+<p>In the two sections that follow you will see two ways of creating a dictionary.</p>
+<p>The first way is by using a set of curly braces, <code>{}</code>, and the second way is by using the built-in <code>dict()</code> function.</p>
+<h3 id="howtocreateanemptydictionaryinpythonanamedefineemptya">How to Create An Empty Dictionary in Python <a name="define-empty"></a></h3>
+<p>To create an empty dictionary, first create a variable name which will be the name of the dictionary.</p>
+<p>Then, assign the variable to an empty set of curly braces, <code>{}</code>.</p>
+<pre><code class="language-python">#create an empty dictionary
+my_dictionary = {}
+
+print(my_dictionary)
+
+#to check the data type use the type() function
+print(type(my_dictionary))
+
+#output
+
+#{}
+#&lt;class 'dict'&gt;
+</code></pre>
+<p>Another way of creating an empty dictionary is to use the <code>dict()</code> function without passing any arguments.</p>
+<p>It acts as a constructor and creates an empty dictionary:</p>
+<pre><code class="language-python">#create an empty dictionary
+my_dictionary = dict()
+
+print(my_dictionary)
+
+#to check the data type use the type() function
+print(type(my_dictionary))
+
+#output
+
+#{}
+#&lt;class 'dict'&gt;
+</code></pre>
+<h3 id="howtocreateadictionarywithitemsinpythonanamedefineitemsa">How to Create A Dictionary With Items in Python <a name="define-items"></a></h3>
+<p>To create a dictionary with items, you need to include <em>key-value</em> pairs inside the curly braces.</p>
+<p>The general syntax for this is the following:</p>
+<pre><code class="language-python">dictionary_name = {key: value}
+</code></pre>
+<p>Let's break it down:</p>
+<ul>
+<li><code>dictionary_name</code> is the variable name. This is the name the dictionary will have.</li>
+<li><code>=</code> is the assignment operator that assigns the <code>key:value</code> pair to the <code>dictionary_name</code>.</li>
+<li>You declare a dictionary with a set of curly braces, <code>{}</code>.</li>
+<li>Inside the curly braces you have a key-value pair. Keys are separated from their associated values with colon, <code>:</code>.</li>
+</ul>
+<p>Let's see an example of creating a dictionary with items:</p>
+<pre><code class="language-python">#create a dictionary
+my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+print(my_information)
+
+#check data type
+print(type(my_information))
+
+#output
+
+#{'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+#&lt;class 'dict'&gt;
+</code></pre>
+<p>In the example above, there is a sequence of elements within the curly braces.</p>
+<p>Specifically, there are three key-value pairs: <code>'name': 'Dionysia'</code>, <code>'age': 28</code>, and <code>'location': 'Athens'</code>.</p>
+<p>The keys are <code>name</code>, <code>age</code>, and <code>location</code>. Their associated values are <code>Dionysia</code>, <code>28</code>, and <code>Athens</code>, respectively.</p>
+<p>When there are multiple key-value pairs in a dictionary, each key-value pair is separated from the next with a comma, <code>,</code>.</p>
+<p>Let's see another example.</p>
+<p>Say that you want to create a dictionary with items using the <code>dict()</code> function this time instead.</p>
+<p>You would achieve this by using <code>dict()</code> and passing the curly braces with the sequence of key-value pairs enclosed in them as an argument to the function.</p>
+<pre><code class="language-python">#create a dictionary with dict()
+my_information = dict({'name': 'Dionysia' ,'age': 28,'location': 'Athens'})
+
+print(my_information)
+
+#check data type
+print(type(my_information))
+
+#output
+
+#{'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+#&lt;class 'dict'&gt;
+</code></pre>
+<p>It's worth mentioning the <code>fromkeys()</code> method, which is another way of creating a dictionary.</p>
+<p>It takes a predefined sequence of items as an argument and returns a new dictionary with the items in the sequence set as the dictionary's specified keys.</p>
+<p>You can <em>optionally</em> set a value for all the keys, but by default the value for the keys will be <code>None</code>.</p>
+<p>The general syntax for the method is the following:</p>
+<pre><code class="language-python">dictionary_name = dict.fromkeys(sequence,value)
+</code></pre>
+<p>Let's see an example of creating a dictionary using <code>fromkeys()</code> without setting a value for all the keys:</p>
+<pre><code class="language-python">#create sequence of strings
+cities = ('Paris','Athens', 'Madrid')
+
+#create the dictionary, `my_dictionary`, using the fromkeys() method
+my_dictionary = dict.fromkeys(cities)
+
+print(my_dictionary)
+
+#{'Paris': None, 'Athens': None, 'Madrid': None}
+</code></pre>
+<p>Now let's see another example that sets a value that will be the same for all the keys in the dictionary:</p>
+<pre><code class="language-python">#create a sequence of strings
+cities = ('Paris','Athens', 'Madrid')
+
+#create a single value
+continent = 'Europe'
+
+my_dictionary = dict.fromkeys(cities,continent)
+
+print(my_dictionary)
+
+#output
+
+#{'Paris': 'Europe', 'Athens': 'Europe', 'Madrid': 'Europe'}
+</code></pre>
+<h2 id="anoverviewofkeysandvaluesindictionariesinpythonanameoverviewa">An Overview of Keys and Values in Dictionaries in Python <a name="overview"></a></h2>
+<p>Keys inside a Python dictionary can <strong>only be of a type that is immutable</strong>.</p>
+<p>Immutable data types in Python are <code>integers</code>, <code>strings</code>, <code>tuples</code>, <code>floating point numbers</code>, and <code>Booleans</code>.</p>
+<p>Dictionary keys <strong>cannot</strong> be of a type that is mutable, such as <code>sets</code>, <code>lists</code>, or <code>dictionaries</code>.</p>
+<p>So, say you have the following dictionary:</p>
+<pre><code class="language-python">my_dictionary = {True: "True",  1: 1,  1.1: 1.1, "one": 1, "languages": ["Python"]}
+
+print(my_dictionary)
+
+#output
+
+#{True: 1, 1.1: 1.1, 'one': 1, 'languages': ['Python']}
+</code></pre>
+<p>The keys in the dictionary are  <code>Boolean</code>, <code>integer</code>, <code>floating point number</code>, and <code>string</code> data types, which are all acceptable.</p>
+<p>If you try to create a key which is of a mutable type you'll get an error - specifically the error will be a <code>TypeError</code>.</p>
+<pre><code class="language-python">my_dictionary = {["Python"]: "languages"}
+
+print(my_dictionary)
+
+#output
+
+#line 1, in &lt;module&gt;
+#    my_dictionary = {["Python"]: "languages"}
+#TypeError: unhashable type: 'list'
+</code></pre>
+<p>In the example above, I tried to create a key which was of <code>list</code> type (a mutable data type). This resulted in a <code>TypeError: unhashable type: 'list'</code> error.</p>
+<p>When it comes to values inside a Python dictionary there are no restrictions. Values can be of any data type - that is they can be both of mutable and immutable types.</p>
+<p>Another thing to note about the differences between keys and values in Python dictionaries, is the fact that keys are <strong>unique</strong>. This means that a key can only appear once in the dictionary, whereas there can be duplicate values.</p>
+<h3 id="howtofindthenumberofkeyvaluepairscontainedinadictionaryinpythonanamelengtha">How to Find the Number of <code>key-value</code> Pairs Contained in a Dictionary in Python <a name="length"></a></h3>
+<p>The <code>len()</code> function returns the total length of the object that is passed as an argument.</p>
+<p>When a dictionary is passed as an argument to the function, it returns the total number of key-value pairs enclosed in the dictionary.</p>
+<p>This is how you calcualte the number of key-value pairs using <code>len()</code>:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+print(len(my_information))
+
+#output
+
+#3
+</code></pre>
+<h3 id="howtoviewallkeyvaluepairscontainedinadictionaryinpythonanamekeyvaluea">How to View All <code>key-value</code> Pairs Contained in a Dictionary in Python <a name="key-value"></a></h3>
+<p>To view every key-value pair that is inside a dictionary, use the built-in <code>items()</code> method:</p>
+<pre><code class="language-python">year_of_creation = {'Python': 1993, 'JavaScript': 1995, 'HTML': 1993}
+
+print(year_of_creation.items())
+
+#output
+
+#dict_items([('Python', 1993), ('JavaScript', 1995), ('HTML', 1993)])
+</code></pre>
+<p>The <code>items()</code> method returns a list of tuples that contains the key-value pairs that are inside the dictionary.</p>
+<h3 id="howtoviewallkeyscontainedinadictionaryinpythonanamekeysa">How to View All <code>keys</code> Contained in a Dictionary in Python <a name="keys"></a></h3>
+<p>To see all of the keys that are inside a dictionary, use the built-in <code>keys()</code> method:</p>
+<pre><code class="language-python">year_of_creation = {'Python': 1993, 'JavaScript': 1995, 'HTML': 1993}
+
+print(year_of_creation.keys())
+
+#output
+
+#dict_keys(['Python', 'JavaScript', 'HTML'])
+</code></pre>
+<p>The <code>keys()</code> method returns a list that contains only the keys that are inside the dictionary.</p>
+<h3 id="howtoviewallvaluescontainedinadictionaryinpythonanamevaluesa">How to View All <code>values</code> Contained in a Dictionary in Python <a name="values"></a></h3>
+<p>To see all of the values that are inside a dictionary, use the built-in <code>values()</code> method:</p>
+<pre><code class="language-python">year_of_creation = {'Python': 1993, 'JavaScript': 1995, 'HTML': 1993}
+
+print(year_of_creation.values())
+
+#output
+
+#dict_values([1993, 1995, 1993])
+</code></pre>
+<p>The <code>values()</code> method returns a list that contains only the values that are inside the dictionary.</p>
+<h2 id="howtoaccessindividualitemsinadictionaryinpythonanameaccessa">How to Access Individual Items in A Dictionary in Python <a name="access"></a></h2>
+<p>When working with lists, you access list items by mentioning the list name and using square bracket notation. In the square brackets you specify the item's index number (or position).</p>
+<p>You can't do exactly the same with dictionaries.</p>
+<p>When working with dictionaries, you can't access an element by referencing its index number, since dictionaries contain key-value pairs.</p>
+<p>Instead, you access the item by using the dictionary name and square bracket notation, but this time in the square brackets you specify a key.</p>
+<p>Each key corresponds with a specific value, so you mention the key that is  associated with the value you want to access.</p>
+<p>The general syntax to do so is the following:</p>
+<pre><code class="language-python">dictionary_name[key]
+</code></pre>
+<p>Let's look at the following example on how to access an item in a Python dictionary:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+#access the value associated with the 'age' key
+print(my_information['age'])
+
+#output
+
+#28
+</code></pre>
+<p>What happens though when you try to access a key that doesn't exist in the dictionary?</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+#try to access the value associated with the 'job' key
+print(my_information['job'])
+
+#output
+
+#line 4, in &lt;module&gt;
+#    print(my_information['job'])
+#KeyError: 'job'
+</code></pre>
+<p>It results in a <code>KeyError</code> since there is no such key in the dictionary.</p>
+<p>One way to avoid this from happening is to first search to see if the key is in the dictionary in the first place.</p>
+<p>You do this by using the <code>in</code> keyword which returns a Boolean value. It returns <code>True</code> if the key is in the dictionary and <code>False</code> if it isn't.</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+#search for the 'job' key
+print('job' in my_information)
+
+#output
+
+#False
+</code></pre>
+<p>Another way around this is to access items in the dictionary by using the <code>get()</code> method.</p>
+<p>You pass the key you're looking for as an argument and <code>get()</code> returns the value that corresponds with that key.</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+#try to access the 'job' key using the get() method
+print(my_information.get('job'))
+
+#output
+
+#None
+</code></pre>
+<p>As you notice, when you are searching for a key that does not exist, by default <code>get()</code> returns <code>None</code> instead of a <code>KeyError</code>.</p>
+<p>If instead of showing that default <code>None</code> value you want to show a different message when a key does not exist, you can customise <code>get()</code> by providing a different value.</p>
+<p>You do so by passing the new value as the second optional argument to the <code>get()</code> method:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+#try to access the 'job' key using the get() method
+print(my_information.get('job', 'This value does not exist'))
+
+#output
+
+#This value does not exist
+</code></pre>
+<p>Now when you are searching for a key and it is not contained in the dictionary, you will see the message <code>This value does not exist</code> appear on the console.</p>
+<h2 id="howtomodifyadictionaryinpythonanamemodifya">How to Modify A Dictionary in Python <a name="modify"></a></h2>
+<p>Dictionaries are <em>mutable</em>, which means they are changeable.</p>
+<p>They can grow and shrink throughout the life of the program.</p>
+<p>New items can be added, already existing items can be updated with new values, and items can be deleted.</p>
+<h3 id="howtoaddnewitemstoadictionaryinpythonanameadda">How to Add New Items to A Dictionary in Python <a name="add"></a></h3>
+<p>To add a key-value pair to a dictionary, use square bracket notation.</p>
+<p>The general syntax to do so is the following:</p>
+<pre><code class="language-python">dictionary_name[key] = value
+</code></pre>
+<p>First, specify the name of the dictionary. Then, in square brackets, create a key and assign it a value.</p>
+<p>Say you are starting out with an empty dictionary:</p>
+<pre><code class="language-python">my_dictionary = {}
+
+print(my_dictionary)
+
+#output
+
+#{}
+</code></pre>
+<p>Here is how you would add a key-value pair to <code>my_dictionary</code>:</p>
+<pre><code class="language-python">my_dictionary = {}
+
+#add a key-value pair to the empty dictionary
+my_dictionary['name'] = "John Doe"
+
+#print dictionary
+print(my_list)
+
+#output
+
+#{'name': 'John Doe'}
+</code></pre>
+<p>Here is how you would add another new key-value pair:</p>
+<pre><code class="language-python">my_dictionary = {}
+
+#add a key-value pair to the empty dictionary
+my_dictionary['name'] = "John Doe"
+
+# add another  key-value pair
+my_dictionary['age'] = 34
+
+#print dictionary
+print(my_dictionary)
+
+#output
+
+#{'name': 'John Doe', 'age': 34}
+</code></pre>
+<p>Keep in mind that if the key you are trying to add already exists in that dictionary and you are assigning it a different value, the key will end up being updated.</p>
+<p>Remember that keys need to be unique.</p>
+<pre><code class="language-python">my_dictionary = {'name': "John Doe", 'age':34}
+
+print(my_dictionary)
+
+#try to create a an 'age' key and assign it a value
+#the 'age' key already exists
+
+my_dictionary['age'] = 46
+
+#the value of 'age' will now be updated
+
+print(my_dictionary)
+
+#output
+
+#{'name': 'John Doe', 'age': 34}
+#{'name': 'John Doe', 'age': 46}
+</code></pre>
+<p>If you want to prevent changing the value of an already existing key by accident, you might want to check if the key you are trying to add is already in the dictionary.</p>
+<p>You do this by using the <code>in</code> keyword as we discussed above:</p>
+<pre><code class="language-python">my_dictionary = {'name': "John Doe", 'age':34}
+
+#I want to add an `age` key. Before I do so, I check to see if it already exists
+print('age' in my_dictionary)
+
+#output
+
+#True
+</code></pre>
+<h3 id="howtoupdateitemsinadictionaryinpythonanameupdatea">How to Update Items in A Dictionary in Python <a name="update"></a></h3>
+<p>Updating items in a dictionary works in a similar way to adding items to a dictionary.</p>
+<p>When you know you want to update one existing key's value, use the following general syntax you saw in the previous section:</p>
+<pre><code class="language-python">dictionary_name[existing_key] = new_value
+</code></pre>
+<pre><code class="language-python">my_dictionary = {'name': "John Doe", 'age':34}
+
+my_dictionary['age'] = 46
+
+print(my_dictionary)
+
+#output
+
+#{'name': 'John Doe', 'age': 46}
+</code></pre>
+<p>To update a dictionary, you can also use the built-in <code>update()</code> method.</p>
+<p>This method is particularly helpful when you want to update more than one value inside a dictionary at the same time.</p>
+<p>Say you want to update the <code>name</code> and <code>age</code> key in <code>my_dictionary</code>, and add a new key, <code>occupation</code>:</p>
+<pre><code class="language-python">my_dictionary = {'name': "John Doe", 'age':34}
+
+my_dictionary.update(name= 'Mike Green', age = 46, occupation = "software developer")
+
+print(my_dictionary)
+
+#output
+
+#{'name': 'Mike Green', 'age': 46, 'occupation': 'software developer'}
+</code></pre>
+<p>The <code>update()</code> method takes a tuple of key-value pairs.</p>
+<p>The keys that already existed were updated with the new values that were assigned, and a new key-value pair was added.</p>
+<p>The <code>update()</code> method is also useful when you want to add the contents of one dictionary into another.</p>
+<p>Say you have one dictionary, <code>numbers</code>, and a second dictionary, <code>more_numbers</code>.</p>
+<p>If you want to merge the contents of <code>more_numbers</code> with the contents of <code>numbers</code>, use the <code>update()</code> method.</p>
+<p>All the key-value pairs contained in <code>more_numbers</code> will be added to the end of the <code>numbers</code> dictionary.</p>
+<pre><code class="language-python">numbers = {'one': 1, 'two': 2, 'three': 3}
+more_numbers = {'four': 4, 'five': 5, 'six': 6}
+
+#update 'numbers' dictionary
+#you update it by adding the contents of another dictionary, 'more_numbers',
+#to the end of it
+numbers.update(more_numbers)
+
+print(numbers)
+
+#output
+
+#{'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6}
+</code></pre>
+<h3 id="howtodeleteitemsfromadictionaryinpythonanamedeletea">How to Delete Items from A Dictionary in Python <a name="delete"></a></h3>
+<p>One of the ways to delete a specific key and its associated value from a dictionary is by using the <code>del</code> keyword.</p>
+<p>The syntax to do so is the following:</p>
+<pre><code class="language-python">del dictionary_name[key]
+</code></pre>
+<p>For example, this is how you would delete the <code>location</code> key from the <code>my_information</code> dictionary:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+del my_information['location']
+
+print(my_information)
+
+#output
+
+#{'name': 'Dionysia', 'age': 28}
+</code></pre>
+<p>If you want to remove a key, but would also like to save that removed value, use the built-in <code>pop()</code> method.</p>
+<p>The <code>pop()</code> method removes but also returns the key you specify. This way, you can store the removed value in a variable for later use or retrieval.</p>
+<p>You pass the key you want to remove as an argument to the method.</p>
+<p>Here is the general syntax to do that:</p>
+<pre><code class="language-python">dictionary_name.pop(key)
+</code></pre>
+<p>To remove the <code>location</code> key from the example above, but this time using the <code>pop()</code> method and saving the value associated with the key to a variable, do the following:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+city = my_information.pop('location')
+
+print(my_information)
+print(city)
+
+#output
+
+#{'name': 'Dionysia', 'age': 28}
+#Athens
+</code></pre>
+<p>If you specify a key that does not exist in the dictionary you will get a <code>KeyError</code> error message:</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+my_information.pop('occupation')
+
+print(my_information)
+
+#output
+
+#line 3, in &lt;module&gt;
+#   my_information.pop('occupation')
+#KeyError: 'occupation'
+</code></pre>
+<p>A way around this is to pass a second argument to the <code>pop()</code> method.</p>
+<p>By including the second argument there would be no error. Instead, there would be a silent fail if the key didn't exist, and the dictionary would remain unchanged.</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+my_information.pop('occupation','Not found')
+
+print(my_information)
+
+#output
+
+#{'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+</code></pre>
+<p>The <code>pop()</code> method removes a specific key and its associated value – but what if you only want to delete the <strong>last</strong> key-value pair from a dictionary?</p>
+<p>For that, use the built-in <code>popitem()</code> method instead.</p>
+<p>This is general syntax for the <code>popitem()</code> method:</p>
+<pre><code class="language-python">dictionary_name.popitem()
+</code></pre>
+<p>The <code>popitem()</code> method takes no arguments, but removes and returns the last key-value pair from a dictionary.</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+popped_item = my_information.popitem()
+
+print(my_information)
+print(popped_item)
+
+#output
+
+#{'name': 'Dionysia', 'age': 28}
+#('location', 'Athens')
+</code></pre>
+<p>Lastly, if you want to delete all key-value pairs from a dictionary, use the built-in <code>clear()</code> method.</p>
+<pre><code class="language-python">my_information = {'name': 'Dionysia', 'age': 28, 'location': 'Athens'}
+
+my_information.clear()
+
+print(my_information)
+
+#output
+
+#{}
+</code></pre>
+<p>Using this method will leave you with an empty dictionary.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>And there you have it! You now know the basics of dictionaries in Python.</p>
+<p>I hope you found this article useful.</p>
+<p>To learn more about the Python programming language, check out freeCodeCamp's <a href="https://www.freecodecamp.org/learn/scientific-computing-with-python/">Scientific Computing with Python Certification</a>.</p>
+<p>You'll start from the basics and learn in an interacitve and beginner-friendly way. You'll also build five projects at the end to put into practice and help reinforce what you've learned.</p>
+<p>Thanks for reading and happy coding!</p>
+<!--kg-card-end: markdown-->
+
+                        </section>
+                        
+                            <div class="sidebar">
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                            </div>
+                        
+                    </div>
+                    <hr />
+                    
+                        <div class="post-full-author-header" data-test-label="author-header-with-bio">
+                            
+                                
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img
+      srcset="https://www.freecodecamp.org/news/content/images/size/w60/2023/08/image-of-me-removebg-preview.png 60w"
+      sizes="60px"
+      src="https://www.freecodecamp.org/news/content/images/size/w60/2023/08/image-of-me-removebg-preview.png"
+      class="author-profile-image"
+      alt="Dionysia Lemonaki"
+      width="502"
+      height="497"
+      onerror="this.style.display='none'"
+      loading="lazy"
+      data-test-label="profile-image"
+    />
+  
+        
+
+        <section class="author-card-content ">
+            <span class="author-card-name">
+                <a href="/news/author/dionysia/" data-test-label="profile-link">
+                    
+                        Dionysia Lemonaki
+                    
+                </a>
+            </span>
+            
+                
+                    <p data-test-label="default-bio">
+                        Read <a href="/news/author/dionysia/">more posts</a>.
+                    </p>
+                
+            
+        </section>
+    </section>
+
+                            
+                        </div>
+                        <hr />
+                    
+
+                    
+                    
+                        
+    
+
+
+<p data-test-label="social-row-cta" class="social-row">
+    If this article was helpful, <button id="tweet-btn" class="cta-button" data-test-label="tweet-button">tweet it</button>.
+</p>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",(()=>{const t=document.getElementById("tweet-btn"),e=window.location,n="Create%20a%20Dictionary%20in%20Python%20%E2%80%93%20Python%20Dict%20Methods".replace(/&#39;/g,"%27"),o="",i="",r=Boolean("");let a;if(r&&(o||i)){const t={originalPostAuthor:"",currentPostAuthor:"Dionysia Lemonaki"};a=encodeURIComponent(`Thank you ${o||t.originalPostAuthor} for writing this helpful article, and ${i||t.currentPostAuthor} for translating it.`)}else!r&&i&&(a=encodeURIComponent(`Thank you ${i} for writing this helpful article.`));const c=`window.open(\n    '${a?`https://twitter.com/intent/tweet?text=${a}%0A%0A${n}%0A%0A${e}`:`https://twitter.com/intent/tweet?text=${n}%0A%0A${e}`}',\n    'share-twitter',\n    'width=550, height=235'\n  ); return false;`;t.setAttribute("onclick",c)}));</script>
+
+
+                        
+
+<div class="learn-cta-row" data-test-label="learn-cta-row">
+    <p>
+        Learn to code for free. freeCodeCamp's open source curriculum has helped more than 40,000 people get jobs as developers. <a href="https://www.freecodecamp.org/learn/" class="cta-button" id="learn-to-code-cta" rel="noopener noreferrer" target="_blank">Get started</a>
+    </p>
+</div>
+
+                    
+                </section>
+                
+                    <div class="banner-ad bottom">
+                        <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                    </div>
+                
+            </article>
+        </div>
+    </main>
+
+
+            
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-desc-col">
+                <p data-test-label="tax-exempt-status">freeCodeCamp is a donor-supported tax-exempt 501(c)(3) charity organization (United States Federal Tax Identification Number: 82-0779546)</p>
+                <p data-test-label="mission-statement">Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public. We also have thousands of freeCodeCamp study groups around the world.</p>
+                <p data-test-label="donation-initiatives">Donations to freeCodeCamp go toward our education initiatives, and help pay for servers, services, and staff.</p>
+                <p class="footer-donation" data-test-label="donate-text">
+                    You can <a href="https://www.freecodecamp.org/donate/" class="inline" rel="noopener noreferrer" target="_blank" >make a tax-deductible donation here</a>.
+                </p>
+            </div>
+            <div class="trending-guides" data-test-label="trending-guides">
+                <div class="col-header">Trending Guides</div>
+                <div class="trending-guides-row">
+                    <div class="footer-col footer-col-1">
+                        <a href="https://www.freecodecamp.org/news/python-bytes-to-string-how-to-convert-a-str-to-bytes-and-back-again/" rel="noopener noreferrer" target="_blank">Exponents in Python
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-to-find-the-size-of-an-array-in-c-with-the-sizeof-operator/" rel="noopener noreferrer" target="_blank">sizeof Operator in C
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/" rel="noopener noreferrer" target="_blank">Dijkstra’s Algorithm
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/what-is-enumerate-in-python/" rel="noopener noreferrer" target="_blank">enumerate() in Python
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/what-is-an-algorithm-definition-for-beginners/" rel="noopener noreferrer" target="_blank">What is an Algorithm?
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/javascript-string-to-boolean/" rel="noopener noreferrer" target="_blank">Parse a Boolean in JS
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/python-datetime-now-how-to-get-todays-date-and-time/" rel="noopener noreferrer" target="_blank">Python Datetime.now()
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-to-convert-integer-to-string-in-java/" rel="noopener noreferrer" target="_blank">Int to String in Java
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/python-length-of-list-how-to-find-the-size-of-a-list/" rel="noopener noreferrer" target="_blank">Python Length of List
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-to-escape-strings-in-javascript/" rel="noopener noreferrer" target="_blank">Escape a String in JS
+                        </a>
+                    </div>
+                    <div class="footer-col footer-col-2">
+                        <a href="https://www.freecodecamp.org/news/what-is-sql-database-definition-for-beginners/" rel="noopener noreferrer" target="_blank">What is SQL?
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/html-new-line-how-to-add-a-line-break-with-the-br-tag/" rel="noopener noreferrer" target="_blank">HTML New Line
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/python-slicing-how-to-slice-an-array/" rel="noopener noreferrer" target="_blank">Python Slicing
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/javascript-range-create-an-array-of-numbers-with-the-from-method/" rel="noopener noreferrer" target="_blank">JavaScript Range
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-to-check-for-null-in-javascript/" rel="noopener noreferrer" target="_blank">JS Check for Null
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-lists-work-in-java/" rel="noopener noreferrer" target="_blank">Java List Example
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/how-to-merge-arrays-in-javascript-array-concatenation-in-js/" rel="noopener noreferrer" target="_blank">Merge Arrays in JS
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/javascript-modulo-operator-how-to-use-the-modulus-in-js/" rel="noopener noreferrer" target="_blank">JS Modulo Operator
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/what-is-a-rest-api/" rel="noopener noreferrer" target="_blank">What is a REST API?
+                        </a>
+                        <a href="https://www.freecodecamp.org/news/encode-decode-html-base64-using-javascript/" rel="noopener noreferrer" target="_blank">JavaScript Encoding
+                        </a>
+                    </div>
+                    <div class="footer-col footer-col-3">
+                        <div class="footer-left">
+                            <a href="https://www.freecodecamp.org/news/javascript-get-request-tutorial/" rel="noopener noreferrer" target="_blank">JavaScript Get Request
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/how-to-reverse-an-array-in-javascript-js-reverse-function/" rel="noopener noreferrer" target="_blank">JS .reverse() Function
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/visual-studio-vs-visual-studio-code/" rel="noopener noreferrer" target="_blank">Visual Studio vs VSCode
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/how-to-use-lambda-functions-in-python/" rel="noopener noreferrer" target="_blank">Python Lambda Functions
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/how-to-remove-a-specific-character-from-a-string-in-python/" rel="noopener noreferrer" target="_blank">Python Remove from String
+                            </a>
+                        </div>
+
+                        <div class="footer-right">
+                            <a href="https://www.freecodecamp.org/news/python-string-to-datetime-how-to-convert-an-str-to-a-date-time-with-strptime/" rel="noopener noreferrer" target="_blank">Python String to Datetime
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/prims-algorithm-explained-with-pseudocode/" rel="noopener noreferrer" target="_blank">What is Prim’s Algorithm?
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case-whats-the-difference/" rel="noopener noreferrer" target="_blank">Different Casings Explained
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/principle-of-lease-privilege-meaning-cybersecurity/" rel="noopener noreferrer" target="_blank">Principle of Least Privilege
+                            </a>
+                            <a href="https://www.freecodecamp.org/news/learn-data-structures-and-algorithms/" rel="noopener noreferrer" target="_blank">Data Structures &amp; Algorithms
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='footer-bottom'>
+            <div class="col-header" data-test-label="our-nonprofit">Our Charity</div>
+            <div class="footer-divider"></div>
+            <div class="our-nonprofit">
+                <a href="https://www.freecodecamp.org/news/about/" rel="noopener noreferrer" target="_blank" data-test-label="about">
+                    About
+                </a>
+                <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank" data-test-label="alumni">
+                    Alumni Network
+                </a>
+                <a href="https://github.com/freeCodeCamp/" rel="noopener noreferrer" target="_blank" data-test-label="open-source">
+                    Open Source
+                </a>
+                <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank" data-test-label="shop">
+                    Shop
+                </a>
+                <a href="https://www.freecodecamp.org/news/support/" rel="noopener noreferrer" target="_blank" data-test-label="support">
+                    Support
+                </a>
+                <a href="https://www.freecodecamp.org/news/sponsors/" rel="noopener noreferrer" target="_blank" data-test-label="sponsors">
+                    Sponsors
+                </a>
+                <a href="https://www.freecodecamp.org/news/academic-honesty-policy/" rel="noopener noreferrer" target="_blank" data-test-label="honesty">
+                    Academic Honesty
+                </a>
+                <a href="https://www.freecodecamp.org/news/code-of-conduct/" rel="noopener noreferrer" target="_blank" data-test-label="coc">
+                    Code of Conduct
+                </a>
+                <a href="https://www.freecodecamp.org/news/privacy-policy/" rel="noopener noreferrer" target="_blank" data-test-label="privacy">
+                    Privacy Policy
+                </a>
+                <a href="https://www.freecodecamp.org/news/terms-of-service/" rel="noopener noreferrer" target="_blank" data-test-label="tos">
+                    Terms of Service
+                </a>
+                <a href="https://www.freecodecamp.org/news/copyright-policy/" rel="noopener noreferrer" target="_blank" data-test-label="copyright">
+                    Copyright Policy
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+        
+        
+        
+
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+        
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"8056ff0ee9ec3808","token":"bdb993c6dde44e178aabd9555e75e4f4","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

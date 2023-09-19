@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<link rel="alternate" href="https://note.nkmk.me/python-numpy-newaxis/" hreflang="ja" /><link rel="alternate" href="https://note.nkmk.me/en/python-numpy-newaxis/" hreflang="en" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="You can add new dimensions to a NumPy array ndarray (= unsqueeze a NumPy array) with np.newaxis, np.expand_dims() and np.reshape() (or reshape() method of ndarray).Indexing — NumPy v1.17 Manual Constants - numpy.newaxis — NumPy v1.17 Manual numpy.expand_dims — NumPy v1.17 Manual np.expand_dims() ...">
+
+<title>NumPy: Add new dimensions to ndarray (np.newaxis, np.expand_dims) | note.nkmk.me</title>
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="NumPy: Add new dimensions to ndarray (np.newaxis, np.expand_dims) | note.nkmk.me" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://note.nkmk.me/en/python-numpy-newaxis/" />
+<meta property="og:description" content="You can add new dimensions to a NumPy array ndarray (= unsqueeze a NumPy array) with np.newaxis, np.expand_dims() and np.reshape() (or reshape() method of ndarray).Indexing — NumPy v1.17 Manual Constants - numpy.newaxis — NumPy v1.17 Manual numpy.expand_dims — NumPy v1.17 Manual np.expand_dims() ..." />
+<meta property="og:image" content="https://i.gyazo.com/6e2f5ddc0100c2c727c70b5e98178243.png" />
+<meta name="twitter:card" content="summary" />
+
+<link href="//note.nkmk.me/en/css/style.css" rel="stylesheet">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RMTCJB');</script>
+<!-- End Google Tag Manager -->
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3230114175671394" crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+[{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://note.nkmk.me/en/","name":"Top"}},{"@type":"ListItem","position":2,"item":{"@id":"https://note.nkmk.me/en/python/","name":"Python"}},{"@type":"ListItem","position":3,"item":{"@id":"https://note.nkmk.me/en/numpy/","name":"NumPy"}}]},
+{"@context":"http://schema.org","@type":"Article","author":{"@type":"Person","name":"nkmk","url":["https://github.com/nkmk","https://twitter.com/nkmk_me"]},"headline":"NumPy: Add new dimensions to ndarray (np.newaxis, np.expand_dims)","datePublished":"2020-09-24","description":"You can add new dimensions to a NumPy array ndarray (= unsqueeze a NumPy array) with np.newaxis, np.expand_dims() and np.reshape() (or reshape() method of ndarray).Indexing — NumPy v1.17 Manual Constants - numpy.newaxis — NumPy v1.17 Manual numpy.expand_dims — NumPy v1.17 Manual np.expand_dims() ..."}]
+</script>
+
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RMTCJB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header>
+        <h1><a href="//note.nkmk.me/en/" id="header-title">note.nkmk.me</a></h1>
+    </header>
+    <div id="center-container">
+        <main>
+            
+<ol id="breadcrumb">
+    <li><a href="//note.nkmk.me/en/">Top</a></li>
+<li><a href="//note.nkmk.me/en/python/">Python</a></li>
+<li><a href="//note.nkmk.me/en/numpy/">NumPy</a></li>
+</ol>
+<article>
+    <h1>NumPy: Add new dimensions to ndarray (np.newaxis, np.expand_dims)</h1>
+    <div id="info">
+        Posted: <time datetime="2020-09-24">2020-09-24</time> | Tags: <a href="//note.nkmk.me/en/python/">Python</a>, <a href="//note.nkmk.me/en/numpy/">NumPy</a>
+    </div>
+
+    <div id="content">
+    <div><p>You can add new dimensions to a NumPy array <code>ndarray</code> (= unsqueeze a NumPy array) with <code>np.newaxis</code>, <code>np.expand_dims()</code> and <code>np.reshape()</code> (or <code>reshape()</code> method of <code>ndarray</code>).</p>
+<ul>
+<li><a href="https://docs.scipy.org/doc/numpy/user/basics.indexing.html#dimensional-indexing-tools">Indexing — NumPy v1.17 Manual</a></li>
+<li><a href="https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.newaxis">Constants - numpy.newaxis — NumPy v1.17 Manual</a></li>
+<li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.expand_dims.html">numpy.expand_dims — NumPy v1.17 Manual</a></li>
+</ul>
+<p><code>np.expand_dims()</code> is similar to <code>torch.unsqueeze()</code> in PyTorch. Note that <code>np.unsqueeze()</code> is not provided.</p>
+<p>This article describes the following contents.</p>
+<ul>
+<li>How to use <code>np.newaxis</code><ul>
+<li><code>np.newaxis</code> is <code>None</code></li>
+<li>Add new dimensions with <code>np.newaxis</code></li>
+<li>Control broadcasting with <code>np.newaxis</code></li>
+</ul>
+</li>
+<li>Add a new dimension with <code>np.expand_dims()</code></li>
+<li><code>np.reshape()</code></li>
+</ul>
+<p>You can use <code>np.reshape()</code> or <code>reshape()</code> method of <code>ndarray</code> to not only add dimensions but also change to any shape. </p>
+<ul>
+<li><a href="../python-numpy-reshape-usage/">NumPy: How to use reshape() and the meaning of -1</a></li>
+</ul>
+<p>You can use <code>np.squeeze()</code> to remove dimensions of size <code>1</code>.</p>
+<ul>
+<li><a href="../python-numpy-squeeze/">NumPy: Remove dimensions of size 1 from ndarray (np.squeeze)</a></li>
+</ul>
+<div class="ad-block-inside">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3230114175671394" data-ad-slot="4622893684" data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div><h2 id="how-to-use-npnewaxis">How to use <code>np.newaxis</code></h2>
+<h3 id="npnewaxis-is-none"><code>np.newaxis</code> is <code>None</code></h3>
+<p><code>np.newaxis</code> is an alias for <code>None</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+<span class="c1"># True</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L1-L4">numpy_newaxis.py</a></div>
+</div>
+
+<p>It's just given an alias to make it easier to understand. If you replace <code>np.newaxis</code> in the sample code below with <code>None</code>, it works the same way.</p>
+<h3 id="add-new-dimensions-with-npnewaxis">Add new dimensions with <code>np.newaxis</code></h3>
+<p>Using <code>np.newaxis</code> inside <code>[]</code> adds a new dimension of size <code>1</code> at that position.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[0 1 2]</span>
+<span class="c1">#  [3 4 5]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0]</span>
+<span class="c1">#   [1]</span>
+<span class="c1">#   [2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3]</span>
+<span class="c1">#   [4]</span>
+<span class="c1">#   [5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3, 1)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L6-L24">numpy_newaxis.py</a></div>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
+<span class="c1"># [[[0 1 2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 1, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L26-L32">numpy_newaxis.py</a></div>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L34-L39">numpy_newaxis.py</a></div>
+</div>
+
+<p>The trailing <code>:</code> in <code>[]</code> can be omitted.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0 1 2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 1, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L41-L47">numpy_newaxis.py</a></div>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L49-L54">numpy_newaxis.py</a></div>
+</div>
+
+<p>Consecutive <code>:</code> can be replaced with <code>...</code>. If you want to add a new dimension to the last dimension of <code>ndarray</code>, which has many dimensions, it is easier to use <code>...</code>.</p>
+<ul>
+<li><a href="../python-numpy-ellipsis/">NumPy: Ellipsis (...) for ndarray</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0]</span>
+<span class="c1">#   [1]</span>
+<span class="c1">#   [2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3]</span>
+<span class="c1">#   [4]</span>
+<span class="c1">#   [5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3, 1)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L56-L66">numpy_newaxis.py</a></div>
+</div>
+
+<p>You can use multiple <code>np.newaxis</code> at once. Multiple dimensions are added.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[[[0]</span>
+<span class="c1">#     [1]</span>
+<span class="c1">#     [2]]]</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1">#   [[[3]</span>
+<span class="c1">#     [4]</span>
+<span class="c1">#     [5]]]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 1, 3, 1)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L68-L79">numpy_newaxis.py</a></div>
+</div>
+
+<p>Adding a dimension by <code>np.newaxis</code> returns a view of the original object. Because the original object and the view object share memory, changing one element modifies the other element.</p>
+<ul>
+<li><a href="../python-numpy-view-copy-shares-memory/">NumPy: Determine if ndarray is view or copy and if it shares memory</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">a_newaxis</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shares_memory</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_newaxis</span><span class="p">))</span>
+<span class="c1"># True</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L81-L84">numpy_newaxis.py</a></div>
+</div>
+
+<h3 id="control-broadcasting-with-npnewaxis">Control broadcasting with <code>np.newaxis</code></h3>
+<p>In the operation of two NumPy arrays, they are automatically reshaped into the same shape by broadcasting.</p>
+<ul>
+<li><a href="../python-numpy-broadcasting/">NumPy: Broadcasting rules and examples</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[[0 0 0]</span>
+<span class="c1">#   [0 0 0]</span>
+<span class="c1">#   [0 0 0]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 0 0]</span>
+<span class="c1">#   [0 0 0]</span>
+<span class="c1">#   [0 0 0]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 0 0]</span>
+<span class="c1">#   [0 0 0]</span>
+<span class="c1">#   [0 0 0]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (3, 3, 3)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="c1"># [[0 1 2]</span>
+<span class="c1">#  [3 4 5]</span>
+<span class="c1">#  [6 7 8]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (3, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]]</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L86-L123">numpy_newaxis.py</a></div>
+</div>
+
+<p>In broadcast, a new dimension is added to the beginning of the array with a smaller number of dimensions.</p>
+<p>If you add a new dimension to the beginning with <code>np.newaxis</code>, the result will be the same as if it was automatically converted by broadcasting.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 3, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[0 1 2]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [6 7 8]]]</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L125-L139">numpy_newaxis.py</a></div>
+</div>
+
+<p>Changing the position to add will give different results.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (3, 1, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [0 1 2]</span>
+<span class="c1">#   [0 1 2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3 4 5]</span>
+<span class="c1">#   [3 4 5]</span>
+<span class="c1">#   [3 4 5]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[6 7 8]</span>
+<span class="c1">#   [6 7 8]</span>
+<span class="c1">#   [6 7 8]]]</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L141-L155">numpy_newaxis.py</a></div>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (3, 3, 1)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0 0 0]</span>
+<span class="c1">#   [1 1 1]</span>
+<span class="c1">#   [2 2 2]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[3 3 3]</span>
+<span class="c1">#   [4 4 4]</span>
+<span class="c1">#   [5 5 5]]</span>
+<span class="c1"># </span>
+<span class="c1">#  [[6 6 6]</span>
+<span class="c1">#   [7 7 7]</span>
+<span class="c1">#   [8 8 8]]]</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L157-L171">numpy_newaxis.py</a></div>
+</div>
+
+<p>For example, if you want to add or subtract arrays of color image (shape: <code>(height, width, color)</code>) and monochromatic image (shape: <code>(height, width)</code>), it is impossible to broadcast the image as it is, but adding a new dimension at the end of the monochromatic image works well.</p>
+<h2 id="add-a-new-dimension-with-npexpand_dims">Add a new dimension with <code>np.expand_dims()</code></h2>
+<p>You can also add a new dimension to a NumPy array with <code>np.expand_dims()</code>.</p>
+<p>Specify the original <code>ndarray</code> in the first argument <code>a</code> and the position to add the dimension in the second argument <code>axis</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[0 1 2]</span>
+<span class="c1">#  [3 4 5]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L3-L13">numpy_expand_dims.py</a></div>
+</div>
+
+<p>You can insert a new dimension at any position as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 1, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3, 1)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L12-L19">numpy_expand_dims.py</a></div>
+</div>
+
+<p>A negative value can be specified for the second argument <code>axis</code>. <code>-1</code> corresponds to the last dimension, and you can specify the position from behind.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3, 1)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 1, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L21-L28">numpy_expand_dims.py</a></div>
+</div>
+
+<p>In NumPy <code>1.17</code>, specifying a value such as <code>axis &gt; a.ndim</code> or <code>axis &lt; -a.ndim - 1</code> in the second argument <code>axis</code> does not cause an error, and the dimension is added at the end or the beginning.</p>
+<p>However, as the warning message says, it will cause an error in the future, so you should avoid it.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3, 1)</span>
+<span class="c1"># </span>
+<span class="c1"># /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: Both axis &gt; a.ndim and axis &lt; -a.ndim - 1 are deprecated and will raise an AxisError in the future.</span>
+<span class="c1">#   """Entry point for launching an IPython kernel.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 1, 3)</span>
+<span class="c1"># </span>
+<span class="c1"># /usr/local/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: Both axis &gt; a.ndim and axis &lt; -a.ndim - 1 are deprecated and will raise an AxisError in the future.</span>
+<span class="c1">#   """Entry point for launching an IPython kernel.</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L30-L40">numpy_expand_dims.py</a></div>
+</div>
+
+<p>Only integer values can be specified in the second argument <code>axis</code>. It is impossible to add multiple dimensions at once by specifying multiple positions with list or tuple.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># print(np.expand_dims(a, (0, 1)).shape)</span>
+<span class="c1"># TypeError: '&gt;' not supported between instances of 'tuple' and 'int'</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L42-L43">numpy_expand_dims.py</a></div>
+</div>
+
+<p>As with <code>np.newaxis</code>, <code>np.expand_dims()</code> returns a view.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a_expand_dims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shares_memory</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_expand_dims</span><span class="p">))</span>
+<span class="c1"># True</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_expand_dims.py#L45-L48">numpy_expand_dims.py</a></div>
+</div>
+
+<p>Of course, you can control broadcasting by adding a new dimension with <code>np.expand_dims()</code> as in the example of <code>np.newaxis</code> above.</p>
+<div class="ad-block-inside">
+    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3230114175671394" data-ad-slot="6956237898"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div><h2 id="npreshape"><code>np.reshape()</code></h2>
+<p>You can reshape <code>ndarray</code> with <code>np.reshape()</code> or <code>reshape()</code> method of <code>ndarray</code>. See the following article for details.</p>
+<ul>
+<li><a href="../python-numpy-reshape-usage/">NumPy: How to use reshape() and the meaning of -1</a></li>
+</ul>
+<p>If you specify a shape with a new dimension to <code>reshape()</code>, the result is, of course, the same as when using <code>np.newaxis</code> or <code>np.expand_dims()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[0 1 2]</span>
+<span class="c1">#  [3 4 5]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (2, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L173-L200">numpy_newaxis.py</a></div>
+</div>
+
+<p>As you can see from the above example, using <code>np.newaxis</code> and <code>np.expand_dims()</code> has the advantage that you don't have to explicitly specify the size of the original dimension.</p>
+<p>Even with <code>reshape()</code>, if you want to add a dimension to the beginning or end, you do not have to explicitly specify the size by unpacking the original shape with <code>*</code>.</p>
+<ul>
+<li><a href="../python-argument-expand/">Unpack and pass list, tuple, dict to function arguments in Python</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="c1"># [[[0 1 2]</span>
+<span class="c1">#   [3 4 5]]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (1, 2, 3)</span>
+</code></pre>
+<div class="source">source: <a href="https://github.com/nkmk/python-snippets/blob/bdad0a366d9e21096721753aa28e49af3360a673/notebook/numpy_newaxis.py#L202-L207">numpy_newaxis.py</a></div>
+</div></div>
+    </div>
+
+    <div class='ad-block'>
+        <style type="text/css">
+</style>
+<ins class="adsbygoogle ad_PC"
+     data-ad-client="ca-pub-3230114175671394"
+     data-ad-slot="4866714571"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<ins class="adsbygoogle ad_PC"
+     data-ad-client="ca-pub-3230114175671394"
+     data-ad-slot="3687642075"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<style type="text/css">
+</style>
+<ins class="adsbygoogle ad_mobile"
+     data-ad-client="ca-pub-3230114175671394"
+     data-ad-slot="6663011974"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div><h2>Related Categories</h2>
+    <div class="link-list" id="related-category">
+        <ul class="columns">
+            <li><a href="//note.nkmk.me/en/python/">Python</a></li>
+            <li><a href="//note.nkmk.me/en/numpy/">NumPy</a></li></ul>
+    </div>
+    
+    <h2>Related Articles</h2>
+    <div class="link-list" id="related-post">
+      <ul>
+          <li><a href="//note.nkmk.me/en/python-numpy-clip/">NumPy: Limit ndarray values to min and max with clip()</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-floor-trunc-ceil/">NumPy: Round up/down the elements of a ndarray (np.floor, trunc, ceil)</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-nan-remove/">NumPy: Remove rows/columns with missing value (NaN) in ndarray</a></li>
+          <li><a href="//note.nkmk.me/en/python-opencv-pillow-image-size/">Get image size (width, height) with Python, OpenCV, Pillow (PIL)</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-post-summary/">List of NumPy articles</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-set-printoptions-threshold/">NumPy: Set whether to print full or truncated ndarray</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-where/">numpy.where(): Manipulate elements depending on conditions</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-tile/">NumPy: Arrange ndarray in tiles with np.tile()</a></li>
+          <li><a href="//note.nkmk.me/en/python-opencv-numpy-alpha-blend-mask/">Alpha blending and masking of images with Python, OpenCV, NumPy</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-sign-signbit-copysign/">NumPy: np.sign(), np.signbit(), np.copysign()</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-condition/">NumPy: Extract or delete elements, rows, and columns that satisfy the conditions</a></li>
+          <li><a href="//note.nkmk.me/en/python-list-ndarray-1d-to-2d/">Convert 1D array to 2D array in Python (numpy.ndarray, list)</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-concatenate-stack-block/">NumPy: Join arrays with np.concatenate, block, vstack, hstack, etc.</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-nansum/">NumPy: Calculate the sum, mean, max, min of ndarray containing np.nan</a></li>
+          <li><a href="//note.nkmk.me/en/python-numpy-load-save-savez-npy-npz/">NumPy: Save and load arrays as binary file (npy, npz)</a></li></ul>
+  </div>
+</article>
+
+        </main>
+        
+<nav id="side">
+    
+
+<div id="side-category" class="side-block">
+   <div class="side-title">Categories</div>
+    <ul class="has-sub-categories"><li class="self"><a href="//note.nkmk.me/en/python/">Python</a>
+            <ul class="nav-columns"><li class="self"><a href="//note.nkmk.me/en/numpy/">NumPy</a></li>
+                <li class="other"><a href="//note.nkmk.me/en/opencv/">OpenCV</a></li>
+                <li class="other"><a href="//note.nkmk.me/en/pandas/">pandas</a></li>
+                <li class="other"><a href="//note.nkmk.me/en/pillow/">Pillow</a></li>
+                <li class="other"><a href="//note.nkmk.me/en/pip/">pip</a></li>
+                <li class="other"><a href="//note.nkmk.me/en/scikit-image/">scikit-image</a></li></ul>
+        </li></ul>
+    <ul class="nav-columns">
+        <li class="other"><a href="//note.nkmk.me/en/jupyter-notebook/">Jupyter Notebook</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/image-processing/">Image Processing</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/file/">File</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/csv/">CSV</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/json/">JSON</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/date-and-time/">Date and time</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/string/">String</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/regex/">Regex</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/numeric/">Numeric</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/dictionary/">Dictionary</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/list/">List</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/error-handling/">Error handling</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/mathematics/">Mathematics</a></li>
+        <li class="other"><a href="//note.nkmk.me/en/summary/">Summary</a></li></ul>
+</div>
+<div id="side-about" class="side-block">
+    <div class="side-title">About</div>
+    <ul>
+        <li>GitHub: <a href="https://github.com/nkmk">nkmk</a></li>
+    </ul>
+</div>
+
+    <div class="side-block">
+    <div class="side-ad-block">
+        <ins class="adsbygoogle ad-side-res"
+                data-ad-client="ca-pub-3230114175671394"
+                data-ad-slot="9819148575"
+                data-ad-format="vertical"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <ins class="adsbygoogle ad-side-res"
+                data-ad-client="ca-pub-3230114175671394"
+                data-ad-slot="2566866979"
+                data-ad-format="rectangle"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+    <div class="side-block">
+    <div class="side-title">Related Articles</div>
+    <div class="link-list" id="side-related-post">
+        <ul>
+            <li><a href="//note.nkmk.me/en/python-numpy-clip/">NumPy: Limit ndarray values to min and max with clip()</a></li>
+            <li><a href="//note.nkmk.me/en/python-numpy-floor-trunc-ceil/">NumPy: Round up/down the elements of a ndarray (np.floor, trunc, ceil)</a></li>
+            <li><a href="//note.nkmk.me/en/python-numpy-nan-remove/">NumPy: Remove rows/columns with missing value (NaN) in ndarray</a></li>
+            <li><a href="//note.nkmk.me/en/python-opencv-pillow-image-size/">Get image size (width, height) with Python, OpenCV, Pillow (PIL)</a></li>
+            <li><a href="//note.nkmk.me/en/python-numpy-post-summary/">List of NumPy articles</a></li></ul>
+    </div>
+</div>
+
+<div class="side-block">
+    <div class="side-ad-block">
+        <ins class="adsbygoogle ad-side-res"
+                data-ad-client="ca-pub-3230114175671394"
+                data-ad-slot="7005376257"
+                data-ad-format="rectangle"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+
+<div class="sticky-block">
+<div class="side-block">
+    <div class="side-ad-block">
+        <ins class="adsbygoogle ad-side-res"
+                data-ad-client="ca-pub-3230114175671394"
+                data-ad-slot="3748245927"
+                data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+</div>
+</nav>
+
+    </div>
+    <footer>
+        <ul>
+            <li>
+                English / <a href="https://note.nkmk.me/">Japanese</a>
+            </li>
+            <li>|</li>
+            <li>
+                <a href="//note.nkmk.me/en/disclaimer/">Disclaimer</a>
+            </li>
+            <li>
+                <a href="//note.nkmk.me/en/privacy-policy/">Privacy policy</a>
+            </li>
+            <li>
+                <a href="https://github.com/nkmk">GitHub</a>
+            </li>
+            <li id="copyright">
+                &copy;<a href="https://nkmk.me/">nkmk.me</a>
+            </li>
+        </ul>
+    </footer>
+    
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</body>
+</html>
